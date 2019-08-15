@@ -74,6 +74,7 @@ function template(obj) {
   let div = document.createElement('div')
   let img = document.createElement('img')
   let div2 = document.createElement('div')
+  let cal = document.createElement('img')
   let title = document.createElement('h3')
   let p = document.createElement('p')
   let p2 = document.createElement('p')
@@ -83,13 +84,17 @@ function template(obj) {
   let following = document.createElement('p')
   let bio = document.createElement('p')
 
+
   div.classList.add('card')
   div2.classList.add('card-info')
   title.classList.add('name')
   p.classList.add('username')
-  
-  img.src = obj.avatar_url
 
+  img.src = obj.avatar_url
+  cal.src = `http://ghchart.rshah.org/${obj.login}`
+  cal.style.width = '100%'
+  div.style.flexFlow = 'row wrap'
+  div2.style.width = '75%'
   title.textContent = obj.name
   p.textContent = obj.login
   p2.textcontent = `Location: ${obj.location}`
@@ -100,9 +105,10 @@ function template(obj) {
   bio.textContent = `Bio: ${obj.bio}`
   
   a.href = obj.html_url
-  
+
   div.appendChild(img)
   div.appendChild(div2)
+  div.appendChild(cal)
   div2.appendChild(title)
   div2.appendChild(p)
   div2.appendChild(p2)
@@ -114,6 +120,8 @@ function template(obj) {
   
   return div
 }
+
+
 
 
 /* List of LS Instructors Github username's: 
