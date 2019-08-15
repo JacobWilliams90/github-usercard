@@ -35,7 +35,18 @@ axios.get('https://api.github.com/users/JacobWilliams90')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan', 'dustinmyers','justsml','luishrd','bigknell','Derrick-Mei'];
+
+followersArray.forEach((item) => {
+  axios.get(`https://api.github.com/users/${item}`)
+    .then((response) => {
+      cards.appendChild(template(response.data))
+    })
+    .catch((error) => {
+      console.log('Network request was unsuccessful')
+      console.log(error)
+    })
+  })
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -103,6 +114,8 @@ function template(obj) {
   
   return div
 }
+
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
