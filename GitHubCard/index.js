@@ -5,8 +5,8 @@
 let cards = document.querySelector('.cards')
 
 axios.get('https://api.github.com/users/JacobWilliams90')
-  .then((response) => {
-    console.log(response.data)
+  .then(response => {
+    cards.appendChild(template(response.data))
   })
 
   .catch((error) => {
@@ -61,41 +61,46 @@ const followersArray = [];
 
 function template(obj) {
   let div = document.createElement('div')
-  div.classList.add('card')
   let img = document.createElement('img')
-  div.appendChild(img)
-  img.src = obj.avatar_url
   let div2 = document.createElement('div')
-  div.appendChild(div2)
-  div2.classList.add('card-info')
   let title = document.createElement('h3')
-  div2.appendChild(title)
-  title.classList.add('name')
-  title.textContent = obj.name
   let p = document.createElement('p')
-  p.classList.add('username')
-  p.textContent = obj.login
-  div2.appendChild(p)
   let p2 = document.createElement('p')
-  p2.textcontent = `Location: ${obj.location}`
-  div2.appendChild(p2)
   let profile = document.createElement('p')
   let a = document.createElement('a')
-  profile.textContent = 'Profile: '
-  a.href = obj.html_url
-  a.textContent = obj.html_url
-  div2.appendChild(p3)
-  profile.appendChild(a)
   let followers = document.createElement('p')
   let following = document.createElement('p')
   let bio = document.createElement('p')
+
+  div.classList.add('card')
+  div2.classList.add('card-info')
+  title.classList.add('name')
+  p.classList.add('username')
+  
+  img.src = obj.avatar_url
+
+  title.textContent = obj.name
+  p.textContent = obj.login
+  p2.textcontent = `Location: ${obj.location}`
+  profile.textContent = 'Profile: '
+  a.textContent = obj.html_url
   followers.textContent = `Followers: ${obj.followers}`
   following.textContent = `Following: ${obj.following}`
   bio.textContent = `Bio: ${obj.bio}`
-  div2.appendchild(followers)
-  div2.appendchild(following)
-  div2.appendchild(bio)
-
+  
+  a.href = obj.html_url
+  
+  div.appendChild(img)
+  div.appendChild(div2)
+  div2.appendChild(title)
+  div2.appendChild(p)
+  div2.appendChild(p2)
+  div2.appendChild(profile)
+  profile.appendChild(a)
+  div2.appendChild(followers)
+  div2.appendChild(following)
+  div2.appendChild(bio)
+  
   return div
 }
 /* List of LS Instructors Github username's: 
